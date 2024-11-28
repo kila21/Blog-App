@@ -1,4 +1,4 @@
-from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
@@ -18,3 +18,9 @@ class BlogCreateApi(CreateAPIView):
       queryset = Blog.objects.all()
       serializer_class = BlogCreateSerializer
       
+
+#this should be RetrieveUpdateDestroyAPIView after authenticate.
+class BlogDetailApi(RetrieveAPIView):
+      queryset = Blog.objects.all()
+      serializer_class = BlogSerializer
+      lookup_field = 'id'

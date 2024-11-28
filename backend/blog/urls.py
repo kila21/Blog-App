@@ -6,5 +6,5 @@ urlpatterns = [
     path('blog', views.BlogsListApi.as_view()),
     path('blog/create', views.BlogCreateApi.as_view()),
     # path('blog/delete'),
-    # path('blog/id')
+    path('blog/<int:id>', views.BlogDetailApi.as_view())
 ]
