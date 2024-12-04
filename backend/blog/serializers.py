@@ -11,4 +11,6 @@ class BlogSerializer(serializers.ModelSerializer):
 class BlogCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = ('title', 'content', 'image', 'user')
+        fields = '__all__'
+        read_only_fields = ['user']
+        
