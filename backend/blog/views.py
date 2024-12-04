@@ -2,6 +2,7 @@ from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Blog
 from .serializers import BlogSerializer, BlogCreateSerializer
@@ -16,7 +17,11 @@ class BlogsListApi(ListAPIView):
 
 class BlogCreateApi(CreateAPIView):
       queryset = Blog.objects.all()
+      permission_classes = [IsAuthenticated]
       serializer_class = BlogCreateSerializer
+
+      def perform_create(self, serializer):
+            serializer.save(user=self.request.user)
       
 
 #this should be RetrieveUpdateDestroyAPIView after authenticate.
